@@ -1,6 +1,8 @@
 package jp.co.sss.lms.ct.f01_login1;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -39,8 +41,10 @@ public class Case02 {
 	void test01() {
 		// TODO ここに追加
 		goTo("http://localhost:8080/lms/");
-		getEvidence(new Object() {
-		});
+		getEvidence(new Object() {});
+		
+		String url = webDriver.getCurrentUrl();
+		assertEquals(url, "http://localhost:8080/lms/");
 	}
 
 	@Test
@@ -53,14 +57,22 @@ public class Case02 {
 		final WebElement login = webDriver.findElement(By.className("btn-primary"));
 		String lmsId = "Student0000";
 		String lmsPass = "Student0000";
-		
-		
+
 		loginId.clear();
 		loginId.sendKeys(lmsId);
 		password.clear();
 		password.sendKeys(lmsPass);
+
+		getEvidence(new Object() {}, "beforeLogin");
+
 		login.click();
+
 		visibilityTimeout(By.className("error"), 10);
-		getEvidence(new Object() {});
+
+		getEvidence(new Object() {}, "afterLogin");
+
+		String errorMessage = webDriver.findElement(By.className("form-horizontal")).getText();
+
+		assertTrue(errorMessage.contains("* ログインに失敗しました。"));
 	}
 }
