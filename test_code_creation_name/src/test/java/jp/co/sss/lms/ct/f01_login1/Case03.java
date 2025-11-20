@@ -56,7 +56,7 @@ public class Case03 {
 		final WebElement password = webDriver.findElement(By.name("password"));
 		final WebElement login = webDriver.findElement(By.className("btn-primary"));
 		String lmsId = "StudentAA01";
-		String lmsPass = "StudentAA01";
+		String lmsPass = "StudentAA0";
 
 		loginId.clear();
 		loginId.sendKeys(lmsId);
