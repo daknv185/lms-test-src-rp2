@@ -164,10 +164,10 @@ public class Case06 {
 		
 		getEvidence(new Object() {});
 
-		WebElement searchA = webDriver.findElement(By.className("fs18"));
+		WebElement searchResult = webDriver.findElement(By.className("fs18"));
 
 		assertEquals("A. 受講者の退職や解雇等、やむを得ない事情による途中終了に関してなど、事情をお伺いした上で、協議という形を取らせて頂きます。 弊社営業担当までご相談下さい。",
-				searchA.getText());
+				searchResult.getText());
 
 	}
 
